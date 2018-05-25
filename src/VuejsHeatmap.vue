@@ -23,12 +23,13 @@ export default {
     renderHeatMap() {
       let entries = this.entries || [{"counting":2070,"created_at":"2017-06-21"},{"counting":3493,"created_at":"2017-06-22"}]
 
-      let startDate = moment().startOf('day')
-      let endDate = moment().endOf('day').toDate()
+      let startDate, endDate
       if (this.yearAhead) {
-        endDate = startDate.add(1, 'year').toDate()
+        startDate = moment().startOf('day').toDate()
+        endDate = smoment().startOf('day').add(1, 'year').toDate()
       } else { 
-        startDate = startDate.subtract(1, 'year').toDate()
+        startDate = moment().startOf('day').subtract(1, 'year').toDate()
+        endDate = moment().endOf('day').toDate()
       }
 
       let data = d3.time.days(startDate, endDate).map((dateElement) => {
