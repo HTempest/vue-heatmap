@@ -9,7 +9,7 @@ import * as d3 from 'd3'
 import { calendarHeatmap } from './calendar-heatmap.js'
 
 export default {
-  props: ['entries', 'colorRange', 'tooltipEnabled', 'tooltipUnit', 'locale', 'max', 'onClick', 'selector'],
+  props: ['entries', 'colorRange', 'tooltipEnabled', 'tooltipUnit', 'locale', 'max', 'onClick', 'selector', 'yearAhead'],
   name: 'vuejs-heatmap',
   mounted() {
     this.renderHeatMap()
@@ -23,10 +23,15 @@ export default {
     renderHeatMap() {
       let entries = this.entries || [{"counting":2070,"created_at":"2017-06-21"},{"counting":3493,"created_at":"2017-06-22"}]
 
-      let now = moment().endOf('day').toDate()
-      let yearAgo = moment().startOf('day').subtract(1, 'year').toDate()
+      let startDate = moment().startOf('day')
+      let endDate = moment().endOf('day').toDate()
+      if (this.yearAhead) {
+        endDate = startDate.add(1, 'year').toDate()
+      } else { 
+        startDate = startDate.subtract(1, 'year').toDate()
+      }
 
-      let data = d3.time.days(yearAgo, now).map((dateElement) => {
+      let data = d3.time.days(startDate, endDate).map((dateElement) => {
         let entry = ((dateElement) => {
           let heatmapEntry = _.find(entries, {created_at: moment(dateElement).format('YYYY-MM-DD')})
           if(!heatmapEntry) {
