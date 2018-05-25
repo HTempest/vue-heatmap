@@ -26,7 +26,7 @@ export default {
       let startDate, endDate
       if (this.yearAhead) {
         startDate = moment().startOf('day').toDate()
-        endDate = smoment().startOf('day').add(1, 'year').toDate()
+        endDate = moment().startOf('day').add(1, 'year').toDate()
       } else { 
         startDate = moment().startOf('day').subtract(1, 'year').toDate()
         endDate = moment().endOf('day').toDate()
