@@ -3,6 +3,8 @@ import * as d3 from 'd3'
 
 let myWidth = window.screen.availWidth;
 
+if(myWidth > 2000){ myWidth = 2000 }
+
 export let calendarHeatmap = {
   init() {
   // defaults
