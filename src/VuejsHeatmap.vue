@@ -67,7 +67,7 @@ export default {
 .vuejs-heatmap text.month-name,
 .vuejs-heatmap text.calendar-heatmap-legend-text,
 .vuejs-heatmap text.day-initial {
-  font-size: 1.5vw;
+  font-size: 14pt;
   fill: inherit;
   font-family: Helvetica, arial, 'Open Sans', sans-serif;
 }
